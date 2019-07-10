@@ -5,6 +5,9 @@ import (
 	"math/big"
 	"strconv"
 	"strings"
+	"github.com/etgryphon/stringUp"
+
+
 )
 
 //ConvertCformat2GoFormatName is self explanatory
@@ -138,3 +141,28 @@ func StringToLittleEndianBytes(in string) []byte {
 	}
 	return myBytes
 }
+
+func CNameToGoCamelCase(name string) string {
+	lowName := strings.ToLower(name)
+	camelName := stringUp.CamelCase(lowName)
+	titledCamel := strings.Title(camelName)
+	if titledCamel == "Type" {
+		titledCamel = "AType"
+	}
+	return titledCamel
+
+}
+
+func CamelCaseEnum(enum string) string {
+
+	enum = strings.TrimSuffix(enum, "_enum")
+	lowEnum := strings.ToLower(enum)
+	camelEnum := stringUp.CamelCase(lowEnum)
+	titledCamelEnum := strings.Title(camelEnum)
+	if titledCamelEnum == "Type" {
+		titledCamelEnum = "AType"
+	}
+	return titledCamelEnum
+
+}
+
